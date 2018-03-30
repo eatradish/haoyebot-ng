@@ -45,6 +45,8 @@ async def handler(msg):
             await wikipedia(bot, msg)
         elif msg['text'].startswith('/start'):
             await bot.sendMessage(msg['chat']['id'], "Hi, I'm haoYe-ng bot")
+        elif msg['text'].startswith('/decided'):
+            await decided(bot, msg)
     except KeyError as e:
         pprint(e)
 
