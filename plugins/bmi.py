@@ -43,4 +43,3 @@ class bmi_object:
             if type(self.height) is str:
                 self.height = float(self.height.replace("m", ""))
         return "%.1f" % (self.weight / self.height ** 2)
-x
