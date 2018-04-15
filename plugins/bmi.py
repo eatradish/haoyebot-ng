@@ -4,6 +4,7 @@ async def bmi(bot, msg):
     lst = person(lst[0], lst[1]).convert()
     bmi = bmi_object(lst[0], lst[1]).calc_bmi()
     await bot.sendMessage(msg['chat']['id'], bmi)
+    
 class person:
     weight = height = 0
     def __init__(self, arg_1, arg_2):
@@ -42,4 +43,4 @@ class bmi_object:
                 self.weight = float(self.weight.replace("kg", ""))
             if type(self.height) is str:
                 self.height = float(self.height.replace("m", ""))
-        return "%.1f" % (self.weight / self.height ** 2)
+        return "%.1f" % (self.weight / self.height ** 2) 
