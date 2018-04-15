@@ -11,7 +11,7 @@ from plugins.whois import whois
 from plugins.bmi import bmi
 from plugins.decided import decided
 #from plugins.kuaidi import kuaidi
-#from plugins.pixiv import pixiv
+from plugins.pixiv import pixiv
 #from plugins.cur import cur
 #from plugins.guess import guess
 #from plugins.wikipedia import wikipedia
