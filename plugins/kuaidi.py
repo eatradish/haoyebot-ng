@@ -31,7 +31,7 @@ async def autocomCode(postid: str) -> str:
             # A dirty hack for JSON serialize. Bypass 'Type mismatch'.
             jResp =  json.loads(await resp.text())
             return jResp['auto'][0]['comCode']
- 
+
 
 async def query(ptype: str, postid: str) -> str:
     url = 'https://www.kuaidi100.com/query'
@@ -58,7 +58,11 @@ async def query(ptype: str, postid: str) -> str:
         async with session.get(url=url, params=params) as resp:
             # Another dirty hack as usual.
             jResp = json.loads(await resp.text())
-            return jResp['data']
+            lst = []
+            for i in jRsep['data']:
+                lst.append('%s %s' %(i['time'], i['context']))
+            s = "\n".join(lst)
+            return s
 
 async def kuaidi(bot,msg):
     postid = msg['text'].split()[-1]
