@@ -59,7 +59,7 @@ async def query(ptype: str, postid: str) -> str:
             # Another dirty hack as usual.
             jResp = json.loads(await resp.text())
             lst = []
-            for i in jRsep['data']:
+            for i in jResp['data']:
                 lst.append('%s %s' %(i['time'], i['context']))
             s = "\n".join(lst)
             return s
