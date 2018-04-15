@@ -2,6 +2,7 @@ import json
 from pprint import pprint
 import aiohttp
 import random
+import urllib.parse
 
 async def pixiv(bot, msg):
 	url = 'https://public-api.secure.pixiv.net/v1/ranking/all?image_sizes=px_128x128%2Cpx_480mw%2Clarge&include_stats=true&page=1&profile_image_sizes=px_170x170%2Cpx_50x50&mode=daily&include_sanity_level=true&per_page=50'
