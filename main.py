@@ -38,8 +38,8 @@ async def handler(msg):
             await whois(bot, msg)
         #elif msg['text'].startswith('/kuaidi'):
         #    await kuaidi(bot, msg)
-        #elif msg['text'].startswith('/pixiv'):
-        #    await pixiv(bot, msg)
+        elif msg['text'].startswith('/pixiv'):
+            await pixiv(bot, msg)
         #elif msg['text'].startswith('/cur'):
         #    await cur(bot, msg)
         #elif msg['text'].startswith('/guess'):
