@@ -40,8 +40,8 @@ async def handler(msg):
             await kuaidi(bot, msg)
         elif msg['text'].startswith('/pixiv'):
             await pixiv(bot, msg)
-        #elif msg['text'].startswith('/cur'):
-        #    await cur(bot, msg)
+        elif msg['text'].startswith('/cur'):
+            await cur(bot, msg)
         #elif msg['text'].startswith('/guess'):
         #    await guess(bot, msg)
         #elif msg['text'].startswith('/wikipedia_summary'):
