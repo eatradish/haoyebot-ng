@@ -14,4 +14,5 @@ async def pixiv(bot, msg):
 			num = random.randint(0,49)
 			photo_url = jResp['response'][0]['works'][num]['work']['image_urls']['large']
 			pixiv_url = 'https://www.pixiv.net/member_illust.php?mode=medium&illust_id={}'.format(urllib.parse.urlsplit(photo_url).path.split('/')[-1].replace('_p0.jpg', '').replace('_p0.png', ''))
+			await bot.sendChatAction(msg['chat']['id'], 'upload_photo')
 			await bot.sendPhoto(msg['chat']['id'], photo_url, caption = pixiv_url)

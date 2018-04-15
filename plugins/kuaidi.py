@@ -6,9 +6,9 @@ import aiohttp
 
 
 async def autocomCode(postid: str) -> str:
-	url = 'https://www.kuaidi100.com/autonumber/autoComNum'
-	# Set header for POST request.
-	headers = {
+    url = 'https://www.kuaidi100.com/autonumber/autoComNum'
+    # Set header for POST request.
+    headers = {
     'Pragma': 'no-cache',
     'Origin': 'https://www.kuaidi100.com',
     'Accept-Encoding': 'gzip, deflate, br',
@@ -21,21 +21,21 @@ async def autocomCode(postid: str) -> str:
     'Referer': 'https://www.kuaidi100.com/',
     'Content-Length': '0',
     'DNT': '1',
-	}
-	# The parameters for request.
-	params = (('resultv2','1'),('text', postid))
+    }
+    # The parameters for request.
+    params = (('resultv2','1'),('text', postid))
 
 
-	async with aiohttp.ClientSession(headers=headers) as session:
-		async with session.post(url=url, params=params) as resp:
-			# A dirty hack for JSON serialize. Bypass 'Type mismatch'.
-			jResp =  json.loads(await resp.text())
-			return jResp['auto'][0]['comCode']
-
+    async with aiohttp.ClientSession(headers=headers) as session:
+        async with session.post(url=url, params=params) as resp:
+            # A dirty hack for JSON serialize. Bypass 'Type mismatch'.
+            jResp =  json.loads(await resp.text())
+            return jResp['auto'][0]['comCode']
+ 
 
 async def query(ptype: str, postid: str) -> str:
-	url = 'https://www.kuaidi100.com/query'
-	headers = {
+    url = 'https://www.kuaidi100.com/query'
+    headers = {
     'Pragma': 'no-cache',
     'DNT': '1',
     'Accept-Encoding': 'gzip, deflate, br',
@@ -46,20 +46,20 @@ async def query(ptype: str, postid: str) -> str:
     'X-Requested-With': 'XMLHttpRequest',
     'Connection': 'keep-alive',
     'Referer': 'https://www.kuaidi100.com/',
-	}
-	# Set parameters
-	params = (
+    }
+    # Set parameters
+    params = (
     ('type', ptype),
     ('postid', postid),
-	)
+    )
 
 
-	async with aiohttp.ClientSession(headers=headers) as session:
-		async with session.get(url=url, params=params) as resp:
-			# Another dirty hack as usual.
-			jResp = json.loads(await resp.text())
-			return jResp['data']
+    async with aiohttp.ClientSession(headers=headers) as session:
+        async with session.get(url=url, params=params) as resp:
+            # Another dirty hack as usual.
+            jResp = json.loads(await resp.text())
+            return jResp['data']
 
 async def kuaidi(bot,msg):
-	postid = msg['text'].split()[-1]
-        await bot.sendMessage(msg['chat']['id'],await query(await autocomCode(postid),postid))
+    postid = msg['text'].split()[-1]
+    await bot.sendMessage(msg['chat']['id'],await query(await autocomCode(postid),postid))
