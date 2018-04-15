@@ -17,15 +17,8 @@ def wikipedia_logic(inp, lang = 'en'):
             wikipedia.set_lang('en')
         else:
             wikipedia.set_lang(lang)
-        url = wikipedia.page(msg).url
-        msg = wikipedia.summary(msg)
-        f = []
-        for i in msg:
-            if i != '\n':
-                f.append(i)
-            else:
-                break
-        msg = "".join(f)
+        url = wikipedia.page(inp).url
+        text = wikipedia.summary(text)
         return msg + '\n' + url
     except:
         return "Not Found Page or LANG"
