@@ -10,7 +10,7 @@ from pprint import pprint
 from plugins.whois import whois
 from plugins.bmi import bmi
 from plugins.decided import decided
-#from plugins.kuaidi import kuaidi
+from plugins.kuaidi import kuaidi
 from plugins.pixiv import pixiv
 #from plugins.cur import cur
 #from plugins.guess import guess
@@ -36,8 +36,8 @@ async def handler(msg):
             await bmi(bot, msg)
         elif msg['text'].startswith('/whois'):
             await whois(bot, msg)
-        #elif msg['text'].startswith('/kuaidi'):
-        #    await kuaidi(bot, msg)
+        elif msg['text'].startswith('/kuaidi'):
+            await kuaidi(bot, msg)
         elif msg['text'].startswith('/pixiv'):
             await pixiv(bot, msg)
         #elif msg['text'].startswith('/cur'):
