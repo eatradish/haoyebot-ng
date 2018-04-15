@@ -1,5 +1,4 @@
 import json
-from pprint import pprint
 import aiohttp
 import random
 import urllib.parse
