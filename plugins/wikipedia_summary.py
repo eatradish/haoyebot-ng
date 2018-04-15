@@ -5,7 +5,7 @@ async def wikipedia_summary(bot, msg):
     lst = shlex.split(msg['text'])[1:]
     inp = lst[0]
     lang = 'en'
-    if len(lst) != 1
+    if len(lst) != 1:
         lang = lst[1]
     result = wikipedia_logic(lang, inp)
     await bot.sendMessage(msg['chat']['id'], result)
