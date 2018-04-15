@@ -7,11 +7,11 @@ async def wikipedia_summary(bot, msg):
     lang = 'en'
     if len(lst) != 1:
         lang = lst[1]
-    result = wikipedia_logic(lang, inp)
+    result = wikipedia_logic(inp, lang)
     await bot.sendMessage(msg['chat']['id'], result)
 
 # inp * input
-async def wikipedia_logic(lang = 'en', inp):
+async def wikipedia_logic(inp, lang = 'en'):
     try:
         if lang == 'en':
             wikipedia.set_lang('en')
