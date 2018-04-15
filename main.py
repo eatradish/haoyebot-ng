@@ -42,10 +42,8 @@ async def handler(msg):
             await pixiv(bot, msg)
         elif msg['text'].startswith('/cur'):
             await cur(bot, msg)
-        #elif msg['text'].startswith('/guess'):
-        #    await guess(bot, msg)
-        #elif msg['text'].startswith('/wikipedia_summary'):
-        #    await wikipedia(bot, msg)
+        elif msg['text'].startswith('/wikipedia_summary'):
+            await wikipedia(bot, msg)
         elif msg['text'].startswith('/start'):
             await bot.sendMessage(msg['chat']['id'], "Hi, I'm haoYe-ng bot")
         elif msg['text'].startswith('/decided'):
