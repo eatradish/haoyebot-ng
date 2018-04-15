@@ -5,6 +5,7 @@ import asyncio
 from aiohttp import web
 import telepot
 import telepot.aio
+import re
 from telepot.aio.loop import OrderedWebhook
 from pprint import pprint
 from plugins.whois import whois
@@ -13,9 +14,8 @@ from plugins.decided import decided
 from plugins.kuaidi import kuaidi
 from plugins.pixiv import pixiv
 from plugins.cur import cur
-#from plugins.guess import guess
 from plugins.wikipedia_summary import wikipedia_summary
-#from plugins.miaow import miaow
+from plugins.miaow import miaow
 from config import TOKEN, URL, PORT
 async def feeder(request):
     data = await request.text()
@@ -48,6 +48,10 @@ async def handler(msg):
             await bot.sendMessage(msg['chat']['id'], "Hi, I'm haoYe-ng bot")
         elif msg['text'].startswith('/decided'):
             await decided(bot, msg)
+        elif re.search(r'[qpbd]+[wau]+[qpbd]', msg['text']) != None:
+            await miaow(bot, msg)
+        else:
+            pass
     except KeyError as e:
         pprint(e)
 
