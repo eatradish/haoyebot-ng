@@ -14,7 +14,7 @@ from plugins.kuaidi import kuaidi
 from plugins.pixiv import pixiv
 from plugins.cur import cur
 #from plugins.guess import guess
-#from plugins.wikipedia import wikipedia
+from plugins.wikipedia import wikipedia_summary
 #from plugins.miaow import miaow
 from config import TOKEN, URL, PORT
 async def feeder(request):
