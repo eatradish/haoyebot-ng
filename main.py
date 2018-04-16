@@ -16,7 +16,10 @@ from plugins.pixiv import pixiv
 from plugins.cur import cur
 from plugins.wikipedia_summary import wikipedia_summary
 from plugins.miaow import miaow
+#from plugins.datab import datab
 from config import TOKEN, URL, PORT
+
+
 async def feeder(request):
     data = await request.text()
     webhook.feed(data)
@@ -30,7 +33,6 @@ async def init(app, bot): # Copy/Pasting code from telepot examples
 
 async def handler(msg):
     pprint(telepot.flance(msg,long=True)) #logging info.
-
     try:
         if msg['text'].startswith('/bmi'):
             await bmi(bot, msg)
@@ -48,10 +50,10 @@ async def handler(msg):
             await bot.sendMessage(msg['chat']['id'], "Hi, I'm haoYe-ng bot")
         elif msg['text'].startswith('/decided'):
             await decided(bot, msg)
-        elif re.search(r'[qpbd]+[wau]+[qpbd]', msg['text']) != None:
-            await miaow(bot, msg)
         else:
             pass
+        if re.search(r'[qpbd]+[wau]+[qpbd]', msg['text']) != None:
+            await miaow(bot, msg)
     except KeyError as e:
         pprint(e)
 
