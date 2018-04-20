@@ -56,7 +56,10 @@ async def handler(msg):
         if re.search(r'[qpbd]+[wau]+[qpbd]', msg['text']) != None:
             await miaow(bot, msg)
         if random.randint(0,10) in [1,2]:
-            await bot.sendMessage(msg['chat']['id'], msg['text'])
+            if 'text' in msg:
+                await bot.sendMessage(msg['chat']['id'], msg['text'])
+            if 'sticker' in msg:
+                await bot.sendMessage(msg['chat']['id'], msg['sticker'])
     except KeyError as e:
         pprint(e)
 
