@@ -35,6 +35,11 @@ async def init(app, bot): # Copy/Pasting code from telepot examples
 async def handler(msg):
     pprint(telepot.flance(msg,long=True)) #logging info.
     try:
+        if random.randint(0,10) in [1,2]:
+            if 'text' in msg:
+                await bot.sendMessage(msg['chat']['id'], msg['text'])
+            if 'sticker' in msg:
+                await bot.sendSticker(msg['chat']['id'], msg['sticker']['file_id'])
         if msg['text'].startswith('/bmi'):
             await bmi(bot, msg)
         elif msg['text'].startswith('/whois'):
@@ -48,18 +53,13 @@ async def handler(msg):
         elif msg['text'].startswith('/wikipedia_summary'):
             await wikipedia(bot, msg)
         elif msg['text'].startswith('/start'):
-            await bot.sendMessage(msg['chat']['id'], "Hi, I'm haoYe-ng bot")
+            await bot.sendSticker(msg['chat']['id'], 'CAADBQADoAADrGw9CXcrhedlPDgCAg')
         elif msg['text'].startswith('/decided'):
             await decided(bot, msg)
         else:
             pass
         if re.search(r'[qpbd]+[wau]+[qpbd]', msg['text']) != None:
             await miaow(bot, msg)
-        if random.randint(0,10) in [1,2]:
-            if 'text' in msg:
-                await bot.sendMessage(msg['chat']['id'], msg['text'])
-            if 'sticker' in msg:
-                await bot.sendMessage(msg['chat']['id'], msg['sticker'])
     except KeyError as e:
         pprint(e)
 
