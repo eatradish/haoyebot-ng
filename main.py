@@ -35,7 +35,7 @@ async def init(app, bot): # Copy/Pasting code from telepot examples
 async def handler(msg):
     pprint(telepot.flance(msg,long=True)) #logging info.
     try:
-        if random.randint(0,10) in [1,2]:
+        if random.randint(0,10) == 1:
             if 'text' in msg:
                 await bot.sendMessage(msg['chat']['id'], msg['text'])
             if 'sticker' in msg:
