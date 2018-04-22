@@ -8,6 +8,7 @@ import binascii
 import requests
 from Crypto.Cipher import AES
 import aiohttp
+import asyncio
 
 header = {
             'Accept': '*/*',
@@ -32,7 +33,7 @@ pubKey = '010001'
 #        'https': 'socks5://127.0.0.1:1080'
 #        }
 async def songs_detail_new_api(music_ids, bit_rate=320000):
-    action = 'http://balabala/weapi/song/enhance/player/url?csrf_token='  # NOQA
+    action = 'http://music.163.com/weapi/song/enhance/player/url?csrf_token='  # NOQA
         #self.session.cookies.load()
         #csrf = ''
         #for cookie in self.session.cookies:
@@ -43,12 +44,13 @@ async def songs_detail_new_api(music_ids, bit_rate=320000):
         #action += csrf
     data = {'ids': music_ids, 'br': bit_rate, 'csrf_token': ""}
     async with aiohttp.ClientSession(headers = header) as session:
-        async with session.post(url = action, data = data = encrypted_request(data)) as resp:
+        async with session.post(url = action, data = encrypted_request(data)) as resp:
             result = json.loads(await resp.text())
     #connection = requests.post(action,
     #                           data = encrypted_request(data),
     #                           headers = header)
     #result = json.loads(connection.text)
+
     return result['data']
 
 def encrypted_id(id):
@@ -92,3 +94,12 @@ def rsaEncrypt(text, pubKey, modulus):
 
 def createSecretKey(size):
     return binascii.hexlify(os.urandom(size))[:16]
+
+
+
+
+
+loop = asyncio.get_event_loop()
+r = loop.run_until_complete(songs_detail_new_api([526413163]))
+print(r)
+loop.close()
