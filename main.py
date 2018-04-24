@@ -36,8 +36,6 @@ async def handler(msg):
     pprint(telepot.flance(msg,long=True)) #logging info.
     try:
         if random.randint(0,10) == 1:
-            if 'text' in msg:
-                await bot.sendMessage(msg['chat']['id'], msg['text'])
             if 'sticker' in msg:
                 await bot.sendSticker(msg['chat']['id'], msg['sticker']['file_id'])
         if msg['text'].startswith('/bmi'):
