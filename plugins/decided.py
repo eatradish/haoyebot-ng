@@ -1,5 +1,6 @@
 import random
 
+
 async def decided(bot, msg):
     lst = msg['text'].split()
     lst = lst[1:]
@@ -9,5 +10,3 @@ async def decided(bot, msg):
     else:
         text = lst[random.randint(0, len(lst) - 1)]
     await bot.sendMessage(msg['chat']['id'], text)
-
-

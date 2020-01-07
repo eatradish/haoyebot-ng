@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 
-__author__  = 'sakiiily'
+__author__ = 'sakiiily'
+#from plugins.datab import datab
+
+
 import asyncio
 from aiohttp import web
 import telepot
@@ -17,25 +20,26 @@ from plugins.pixiv import pixiv
 from plugins.cur import cur
 from plugins.wikipedia_summary import wikipedia_summary
 from plugins.miaow import miaow
-#from plugins.datab import datab
 from config import TOKEN, URL, PORT
 
 
 async def feeder(request):
     data = await request.text()
     webhook.feed(data)
-    return web.Response(body = 'OK'.encode('UTF-8'))
+    return web.Response(body='OK'.encode('UTF-8'))
 
-async def init(app, bot): # Copy/Pasting code from telepot examples
+
+async def init(app, bot):  # Copy/Pasting code from telepot examples
     app.router.add_route('GET', '/webhook', feeder)
     app.router.add_route('POST', '/webhook', feeder)
 
     await bot.setWebhook(URL)
 
+
 async def handler(msg):
-    pprint(telepot.flance(msg,long=True)) #logging info.
+    pprint(telepot.flance(msg, long=True))  # logging info.
     try:
-        if random.randint(0,10) == 1:
+        if random.randint(0, 10) == 1:
             if 'sticker' in msg:
                 await bot.sendSticker(msg['chat']['id'], msg['sticker']['file_id'])
         if msg['text'].startswith('/bmi'):
@@ -49,7 +53,7 @@ async def handler(msg):
         elif msg['text'].startswith('/cur'):
             await cur(bot, msg)
         elif msg['text'].startswith('/wikipedia_summary'):
-            await wikipedia(bot, msg)
+            await wikipedia_summary(bot, msg)
         elif msg['text'].startswith('/start'):
             await bot.sendSticker(msg['chat']['id'], 'CAADBQADoAADrGw9CXcrhedlPDgCAg')
         elif msg['text'].startswith('/decided'):
@@ -61,11 +65,11 @@ async def handler(msg):
     except KeyError as e:
         pprint(e)
 
-loop = asyncio.get_event_loop() # Get eventloop
+loop = asyncio.get_event_loop()  # Get eventloop
 
 app = web.Application(loop=loop)
 bot = telepot.aio.Bot(TOKEN, loop=loop)
-webhook = OrderedWebhook(bot, {'chat': handler}) # Create Webhook here.
+webhook = OrderedWebhook(bot, {'chat': handler})  # Create Webhook here.
 
 loop.run_until_complete(init(app, bot))
 

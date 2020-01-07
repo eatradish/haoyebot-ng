@@ -1,6 +1,7 @@
 import wikipedia
 import shlex
 
+
 async def wikipedia_summary(bot, msg):
     lst = shlex.split(msg['text'])[1:]
     inp = lst[0]
@@ -11,7 +12,9 @@ async def wikipedia_summary(bot, msg):
     await bot.sendMessage(msg['chat']['id'], result)
 
 # inp * input
-def wikipedia_logic(inp, lang = 'en'):
+
+
+def wikipedia_logic(inp, lang='en'):
     try:
         if lang == 'en':
             wikipedia.set_lang('en')

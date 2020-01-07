@@ -5,8 +5,10 @@ async def bmi(bot, msg):
     bmi = bmi_object(lst[0], lst[1]).calc_bmi()
     await bot.sendMessage(msg['chat']['id'], bmi)
 
+
 class person:
     weight = height = 0
+
     def __init__(self, arg_1, arg_2):
         self.arg_1 = arg_1
         self.arg_2 = arg_2
@@ -24,6 +26,7 @@ class person:
             else:
                 pass
         return [weight, height]
+
 
 class bmi_object:
     def __init__(self, weight, height):

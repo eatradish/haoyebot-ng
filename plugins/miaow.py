@@ -3,7 +3,7 @@ async def miaow(bot, msg):
     run = ['a', 'w', 'u']
     lst = list(msg['text'])
     for i in range(len(lst)):
-        if lst[i] in dic.keys():
+        if dic.get(lst[i]):
             lst[i] = dic[lst[i]]
         lst = list(filter(lambda x: x in dic.keys() or x in run, lst))
         while lst[0] in run:

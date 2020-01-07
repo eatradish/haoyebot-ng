@@ -94,5 +94,6 @@ def songs_detail_new_api(music_ids, bit_rate=320000):
     return result['data']
 
 
-r = songs_detail_new_api([sys.argv[1]])
-print(r)
+if __name__ == '__main__':
+    r = songs_detail_new_api([sys.argv[1]])
+    print(r)
